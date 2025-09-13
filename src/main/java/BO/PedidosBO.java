@@ -1,4 +1,6 @@
 package BO;
 
-public class PedidosBO {
+import DAO.PedidosDAO;
+
+public class PedidosBO{
 }

@@ -1,4 +1,6 @@
 package BO;
 
-public class ComandasBO {
+import DAO.ComandasDAO;
+
+public class ComandasBO{
 }

@@ -14,17 +14,13 @@ public class Conexao {
     private static final String SENHA = "Suasenha1310@";
 
     public static Connection getConexao() {
-
         try {
             Class.forName(DRIVE_MYSQL);
             Connection conn
                     = DriverManager.getConnection(ENDERECO, USUARIO, SENHA);
             return conn;
-
         } catch (ClassNotFoundException | SQLException ex) {
-
             ex.printStackTrace();
-
             throw new RuntimeException("Erro ao estabelecer uma conexao com o banco");
         }
     }
@@ -37,7 +33,6 @@ public class Conexao {
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao fechar uma conexao com o banco");
         }
-
     }
 
     public static void fecharConexao(Connection con, PreparedStatement stmt) {
@@ -50,7 +45,6 @@ public class Conexao {
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao fechar uma conexao com o banco");
         }
-
     }
 
     public static void fecharConexao(Connection con, PreparedStatement stmt, ResultSet rs) {
@@ -63,7 +57,6 @@ public class Conexao {
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao fechar uma conexao com o banco");
         }
-
     }
 
 }

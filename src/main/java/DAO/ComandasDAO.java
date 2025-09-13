@@ -12,29 +12,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComandasDAO {
-
-    public void incluir(Curso curso) {
+public class ComandasDAO{
+    public void incluir(){
 
         Connection con = Conexao.getConexao();
         PreparedStatement stmt = null;
 
         try {
             stmt = con.prepareStatement("INSERT INTO CURSO (nome) VALUES (?)");
-
             stmt.setString(1, curso.getNome());
-
             stmt.executeUpdate();
-
             System.out.println("Curso " + curso.getNome() + " inserido com sucesso");
-
         } catch (SQLException ex) {
             ex.printStackTrace();
-
             throw new RuntimeException("Erro ao inserir informação no banco de dados");
         } finally {
             Conexao.fecharConexao(con, stmt);
-
         }
 
     }

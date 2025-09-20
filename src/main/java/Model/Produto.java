@@ -3,7 +3,15 @@ package Model;
 public class Produto {
     private int id;
     private String nome;
-    private double preco;
+    private float preco;
+
+    public Produto(){}
+
+    public Produto(int id, String nome, float preco){
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+    }
 
     public String getNome() {
         return nome;
@@ -19,10 +27,8 @@ public class Produto {
         this.id = id;
     }
 
-    public double getPreco() {
-        return preco;
-    }
-    public void setPreco(double preco) {
+    public double getPreco() {return preco;}
+    public void setPreco(float preco) {
         this.preco = preco;
     }
 

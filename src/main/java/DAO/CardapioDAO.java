@@ -25,7 +25,7 @@ public class CardapioDAO{
                 Produto produto =  new Produto();
                 produto.setId(rs.getInt(1));
                 produto.setNome(rs.getString(2));
-                produto.setPreco(rs.getDouble(3));
+                produto.setPreco(rs.getFloat(3));
                 listaProdutos.add(produto);
             }
         }catch (SQLException s){
@@ -36,4 +36,32 @@ public class CardapioDAO{
         }
         return listaProdutos;
     }
+
+    public Produto buscarPorId(int idProduto) {
+        Connection con = Conexao.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Produto produto = null;
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM cardapio WHERE ID = ?");
+            stmt.setInt(1, idProduto);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                produto = new Produto(
+                        rs.getInt("ID"),
+                        rs.getString("NOME"),
+                        rs.getFloat("VALOR")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Conexao.fecharConexao(con, stmt, rs);
+        }
+
+        return produto;
+    }
+
 }

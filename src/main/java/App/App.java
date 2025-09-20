@@ -19,29 +19,27 @@ public class App{
         int idComanda;
         int mesa;
 
-        String resp = null;
-
+        String opcaoPrincipal = null;
         do{
-            resp = null;
-            System.out.print("-------------------- SISTEMA DE PEDIIDOS - RESTAURANTE O GARÇOM --------------------\n" +
+            System.out.print("\n-------------------- SISTEMA DE PEDIIDOS - RESTAURANTE O GARÇOM --------------------\n" +
                     "\na) Menu comandas" +
                     "\nb) Relatório mensal" +
                     "\nc) Vizualizar cardápio" +
                     "\ns) Sair" +
                     "\n\nOpção escolhida: ");
-                    resp = sc.nextLine();
-            switch(resp){
+                    opcaoPrincipal = sc.nextLine();
+            switch(opcaoPrincipal){
                 case "a":
                     if(cbo.verificarStatus()){
                         System.out.print("Não há nenhuma comanda criada até agora. Digite 'C' para criar uma nova comanda: ");
-                        resp = sc.nextLine();
-                        if(resp.equals("C")){
+                        String resposta = sc.nextLine();
+                        if(resposta.equals("C")){
                             Comandas comanda = new Comandas();
                             System.out.print("\nDigite o número da mesa associdada: ");
                             mesa = sc.nextInt(); sc.nextLine();
                             System.out.print("Digite o nome da pessoa que fez o pedido: ");
                             String nome_pessoa = sc.nextLine();
-                            System.out.print("Digite o nome do garçom responsável pela mesa: ");
+                            System.out.print("Digite o ID do garçom responsável pela mesa: ");
                             int idGarcom = sc.nextInt(); sc.nextLine();
                             comanda.setNomePessoa(nome_pessoa);
                             comanda.setIdGarcom(idGarcom);
@@ -61,12 +59,49 @@ public class App{
                                 "\nB) Excluir comanda existente" +
                                 "\nC) Criar uma nova comanda" +
                                 "\nD) Somente vizualizar detalhes de uma comanda existente" +
-                                "\nE) Voltar para o menu anterior" +
+                                "\nE) Fechar comanda existente" +
+                                "\nF) Voltar para o menu anterior" +
                                 "\n\nOpção escolhida: ");
-                        resp = sc.nextLine();
-                        switch(resp){
+                        String opcaoComanda = sc.nextLine();
+                        switch(opcaoComanda){
                             case "A":
                                 System.out.println("Digite o ID da comanda deseja vizualizar para editar seus pedidos: ");
+                                idComanda = sc.nextInt(); sc.nextLine();
+                                System.out.println("\n-------------------- PEDIDOS DA COMANDA --------------------\n");
+                                cbo.listarPedidos(idComanda);
+                                System.out.print("\nEscolha uma ação:\n" +
+                                        "\n1 - Adicionar pedido" +
+                                        "\n2 - Editar pedido" +
+                                        "\n3 - Remover pedido" +
+                                        "\n4 - Voltar" +
+                                        "\n\nOpção escolhida: ");
+                                int opcaoPedido = sc.nextInt(); sc.nextLine();
+                                switch(opcaoPedido){
+                                    case 1:
+                                        System.out.print("\nDigite o ID do produto: ");
+                                        int idProdutoAdd = sc.nextInt(); sc.nextLine();
+                                        System.out.print("Digite a quantidade: ");
+                                        int qtdAdd = sc.nextInt(); sc.nextLine();
+                                        cbo.addPedido(idComanda, idProdutoAdd, qtdAdd);
+                                        break;
+                                    case 2:
+                                        System.out.print("Digite o ID do produto que deseja editar: ");
+                                        int idProdutoEdit = sc.nextInt(); sc.nextLine();
+                                        System.out.print("Digite a nova quantidade: ");
+                                        int qtdEdit = sc.nextInt(); sc.nextLine();
+                                        cbo.editarPedido(idComanda, idProdutoEdit, qtdEdit);
+                                        break;
+                                    case 3:
+                                        System.out.print("Digite o ID do produto que deseja remover: ");
+                                        int idProdutoDel = sc.nextInt(); sc.nextLine();
+                                        cbo.deletarPedido(idComanda, idProdutoDel);
+                                        break;
+                                    case 4:
+                                        break;
+                                    default:
+                                        System.out.println("Opção inválida!");
+                                }
+                                break;
                             case "B":
                                 System.out.println("Digite o ID da comanda que deseja deletar: ");
                                 idComanda = sc.nextInt();
@@ -89,8 +124,16 @@ public class App{
                                 break;
                             case "D":
                                 System.out.println("Digite o ID da comanda que deseja vizualizar detalhes: ");
-                                idComanda = sc.nextInt();
+                                idComanda = sc.nextInt(); sc.nextLine();
+                                System.out.println("\n-------------------- PEDIDOS DA COMANDA --------------------\n");
+                                cbo.listarPedidos(idComanda);
+                                break;
                             case "E":
+
+                                break;
+                            case "F":
+                                break;
+                            default:
                                 break;
                         }
                     }
@@ -107,6 +150,6 @@ public class App{
                 default:
                     break;
             }
-        }while(!resp.equals("s"));
+        }while(!opcaoPrincipal.equals("s"));
     }
 }

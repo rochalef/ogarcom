@@ -10,4 +10,10 @@ public class CardapioBO{
         List<Produto> listaProdutos = cdao.consulta();
         return listaProdutos;
     }
+
+    public Produto buscarPorId(int idProduto){
+        CardapioDAO cdao = new CardapioDAO();
+        Produto p = cdao.buscarPorId(idProduto);
+        return p;
+    }
 }

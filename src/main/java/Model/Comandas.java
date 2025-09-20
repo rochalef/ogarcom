@@ -1,11 +1,14 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDateTime;
 
 public class Comandas {
     private int id, mesa, idGarcom;
     private String nome_pessoa, nome_garcom;
     private LocalDateTime dataHoraAbertura;
+    private List<Pedidos> listaPedidos = new ArrayList<>();
     private boolean status;
     private float precoFinal;
 
@@ -34,6 +37,9 @@ public class Comandas {
 
     public LocalDateTime getDataHoraAbertura() {return dataHoraAbertura;}
     public void setDataHoraAbertura(LocalDateTime dataHoraAbertura) {this.dataHoraAbertura = dataHoraAbertura;}
+
+    public List<Pedidos> getListaPedidos() {return listaPedidos;}
+    public void setListaPedidos(List<Pedidos> listaPedidos) {this.listaPedidos = listaPedidos;}
 
     public String toString(){return "ID: " + id +
             " | Mesa: " + mesa +

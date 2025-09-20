@@ -1,13 +1,13 @@
 package BO;
 
 import DAO.CardapioDAO;
-import Model.TesteProduto;
+import Model.Produto;
 import java.util.List;
 
 public class CardapioBO{
-    public List<TesteProduto> vizualizarCardapio(){
+    public List<Produto> vizualizarCardapio(){
         CardapioDAO cdao = new CardapioDAO();
-        List<TesteProduto> listaProdutos = cdao.consulta();
+        List<Produto> listaProdutos = cdao.consulta();
         return listaProdutos;
     }
 }

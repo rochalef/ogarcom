@@ -1,7 +1,7 @@
 package App;
 
 import Model.Comandas;
-import Model.TesteProduto;
+import Model.Produto;
 import BO.FuncionarioBO;
 import BO.ComandasBO;
 import BO.CardapioBO;
@@ -99,8 +99,8 @@ public class App{
                     break;
                 case "c":
                     CardapioBO carBO = new CardapioBO();
-                    List<TesteProduto> cardapio = carBO.vizualizarCardapio();
-                    for(TesteProduto p : cardapio){
+                    List<Produto> cardapio = carBO.vizualizarCardapio();
+                    for(Produto p : cardapio){
                         System.out.print("\n" + p);
                     }
                     break;

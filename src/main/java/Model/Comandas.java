@@ -1,33 +1,13 @@
 package Model;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+import java.time.LocalDateTime;
 
 public class Comandas {
     private int id, mesa, idGarcom;
-    private String nome;
+    private String nome_pessoa, nome_garcom;
+    private LocalDateTime dataHoraAbertura;
     private boolean status;
     private float precoFinal;
-
-    List<Pedidos> listaPedidos = new ArrayList<>();
-
-    // Funções CRUD
-
-    public void criarPedido(int idProduto, int qtd){
-
-        /* Fazer verificação de existencia de pedido; caso o produto já tenha sido pedido anteriormente,
-        * só adiciona mais a quantidade pré-existente; caso contrário, cria mais um objeto para registrar
-        * o pedido feito.*/
-
-        Pedidos pedido = new Pedidos(idProduto, qtd);
-        listaPedidos.add(pedido);
-    }
-
-    public void editarPedido(int idProduto){
-
-    }
 
     // Lista de getters e setters para cada atributo
 
@@ -40,12 +20,26 @@ public class Comandas {
     public int getIdGarcom() {return idGarcom;}
     public void setIdGarcom(int idGarcom) {this.idGarcom = idGarcom;}
 
-    public String getNome() {return nome;}
-    public void setNome(String nome) {this.nome = nome;}
+    public String getNomePessoa() {return nome_pessoa;}
+    public void setNomePessoa(String nome_pessoa) {this.nome_pessoa = nome_pessoa;}
 
     public boolean isStatus() {return status;}
     public void setStatus(boolean status) {this.status = status;}
 
     public float getPrecoFinal() {return precoFinal;}
     public void setPrecoFinal(float precoFinal) {this.precoFinal = precoFinal;}
+
+    public String getNomeGarcom() {return nome_garcom;}
+    public void setNomeGarcom(String nome_garcom) {this.nome_garcom = nome_garcom;}
+
+    public LocalDateTime getDataHoraAbertura() {return dataHoraAbertura;}
+    public void setDataHoraAbertura(LocalDateTime dataHoraAbertura) {this.dataHoraAbertura = dataHoraAbertura;}
+
+    public String toString(){return "ID: " + id +
+            " | Mesa: " + mesa +
+            " | Nome do cliente: " + nome_pessoa +
+            " | Nome do garçom: " + nome_garcom +
+            " | Status: " + (status ? "Aberta" : "Fechada") +
+            " | Data e hora de abertura: " + dataHoraAbertura;
+    }
 }

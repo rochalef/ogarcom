@@ -1,23 +1,29 @@
 package Conexao;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Conexao {
-
     private static final String DRIVE_MYSQL = "com.mysql.cj.jdbc.Driver";
-    private static final String ENDERECO = "jdbc:mysql://localhost:3306/bolinha";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "Suasenha1310@";
+    private static final String ENDERECO = Config.get("db.url");
+    private static final String USUARIO = Config.get("db.username");
+    private static final String SENHA = Config.get("db.password");
+
+    public Conexao() throws FileNotFoundException {
+    }
 
     public static Connection getConexao() {
         try {
             Class.forName(DRIVE_MYSQL);
-            Connection conn
-                    = DriverManager.getConnection(ENDERECO, USUARIO, SENHA);
+            Connection conn = DriverManager.getConnection(ENDERECO, USUARIO, SENHA);
             return conn;
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();

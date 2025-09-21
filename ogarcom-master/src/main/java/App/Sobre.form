@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="648" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="297" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="\ud83c\udfe0 Tela Inicial &#x2013; Menu Principal:&#xa;&#xa;Ao iniciar o sistema, ser&#xe1; exibida uma janela de Menu, que apresenta tr&#xea;s op&#xe7;&#xf5;es principais:&#xa;&#xa;--&gt; Comandas&#xa;&#xa;--&gt; Card&#xe1;pio&#xa;&#xa;--&gt; Relat&#xf3;rios&#xa;&#xa;O usu&#xe1;rio deve selecionar a op&#xe7;&#xe3;o desejada para acessar as funcionalidades correspondentes.&#xa;&#xa;\ud83d\udcd1 Aba Comandas:&#xa;&#xa;Na aba Comandas, o sistema exibe em tempo real uma caixa de texto que mostra todas as comandas abertas&#xa;no momento. Essas informa&#xe7;&#xf5;es s&#xe3;o armazenadas em um banco de dados e apenas as comandas ativas &#xa;(ainda n&#xe3;o fechadas) s&#xe3;o listadas automaticamente.&#xa;&#xa;Abaixo da caixa de texto, h&#xe1; diversos campos que permitem o gerenciamento detalhado de cada comanda. &#xa;S&#xe3;o eles:&#xa;&#xa;--&gt; ID da comanda &#x2013; n&#xfa;mero &#xfa;nico de identifica&#xe7;&#xe3;o.&#xa;&#xa;--&gt; N&#xfa;mero da mesa &#x2013; mesa vinculada &#xe0; comanda.&#xa;&#xa;--&gt; Nome do cliente &#x2013; identifica&#xe7;&#xe3;o do cliente.&#xa;&#xa;--&gt; Nome do gar&#xe7;om &#x2013; respons&#xe1;vel pelo atendimento.&#xa;&#xa;--&gt; ID do gar&#xe7;om &#x2013; identifica&#xe7;&#xe3;o &#xfa;nica do gar&#xe7;om.&#xa;&#xa;--&gt; Status da comanda &#x2013; pode estar Aberta ou Fechada.&#xa;&#xa;--&gt; Forma de pagamento &#x2013; dinheiro, cart&#xe3;o, PIX, etc.&#xa;&#xa;--&gt; Data de cria&#xe7;&#xe3;o &#x2013; data em que a comanda foi aberta.&#xa;&#xa;--&gt; ID dos pedidos &#x2013; identifica&#xe7;&#xe3;o dos itens registrados.&#xa;&#xa;--&gt; Valor final a ser pago &#x2013; soma total dos pedidos.&#xa;&#xa;Logo abaixo dos campos, encontram-se as op&#xe7;&#xf5;es de a&#xe7;&#xe3;o:&#xa;&#xa;--&gt; Criar Comanda &#x2013; abre uma nova comanda.&#xa;&#xa;--&gt; Remover Comanda &#x2013; exclui uma comanda existente.&#xa;&#xa;--&gt; Listar Comandas Fechadas &#x2013; mostra apenas as comandas j&#xe1; finalizadas.&#xa;&#xa;--&gt; Editar Comanda &#x2013; permite alterar informa&#xe7;&#xf5;es de uma comanda aberta.&#xa;&#xa;&#x26a0;&#xfe0f; Importante:&#xa;As op&#xe7;&#xf5;es s&#xf3; podem ser ativadas ap&#xf3;s o preenchimento completo de todos os campos obrigat&#xf3;rios. &#xa;Isso garante que os registros sejam salvos corretamente e evita inconsist&#xea;ncias no banco de dados.&#xa;&#xa;\ud83d\udccb Aba Card&#xe1;pio:&#xa;&#xa;Nesta aba, o usu&#xe1;rio pode visualizar os itens dispon&#xed;veis no card&#xe1;pio do restaurante.&#xa;Os pratos, bebidas e acompanhamentos ficam organizados em lista, servindo como refer&#xea;ncia &#xa;tanto para o gar&#xe7;om quanto para o cliente.&#xa;&#xa;\ud83d\udcca Aba Relat&#xf3;rios:&#xa;&#xa;Na aba Relat&#xf3;rios, o sistema disponibiliza informa&#xe7;&#xf5;es para auxiliar na an&#xe1;lise de desempenho &#xa;do restaurante, como:&#xa;&#xa;--&gt; Total de comandas abertas e fechadas por m&#xea;s.&#xa;&#xa;--&gt; Volume de vendas.&#xa;&#xa;--&gt; M&#xe9;todos de pagamento mais utilizados." containsInvalidXMLChars="true"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

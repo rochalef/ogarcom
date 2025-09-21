@@ -147,24 +147,11 @@ public class App{
                         break;
                     }
                 case "b":
-                    List<Comandas> todasComandas = cbo.listarTodas();
 
-                    // Filtra apenas as fechadas (status == false)
-                    List<Comandas> comandasFechadas = new ArrayList<>();
-                    if(todasComandas != null) {
-                        for(Comandas c : todasComandas){
-                            if(!c.isStatus()){
-                                comandasFechadas.add(c);
-                            }
-                        }
-                    }
+                    RelatorioBO relatorioBO = new RelatorioBO();
 
-                    if(comandasFechadas.isEmpty()){
-                        System.out.println("Não há comandas fechadas para gerar relatório.");
-                    } else {
-                        Relatorio relatorio = rbo.gerarRelatorio(comandasFechadas);
-                        System.out.println("\n" + relatorio);
-                    }
+                    Relatorio relatorio = relatorioBO.gerarRelatorioMensal();
+                    System.out.println(relatorio);
                     break;
 
                 case "c":

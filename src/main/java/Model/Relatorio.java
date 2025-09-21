@@ -1,26 +1,47 @@
 package Model;
 
 public class Relatorio {
-    //quantidade de itens vendidos
-    //valor arrecadado
+    private double faturamentoMensal;
     private int totalPedidos;
-    private double valorArrecadado;
     private String pratoMaisVendido;
 
-    public Relatorio(int totalPedidos, double valorArrecadado, String pratoMaisVendido) {
+    public Relatorio(double faturamentoMensal, int totalPedidos, String pratoMaisVendido) {
+        this.faturamentoMensal = faturamentoMensal;
         this.totalPedidos = totalPedidos;
-        this.valorArrecadado = valorArrecadado;
         this.pratoMaisVendido = pratoMaisVendido;
     }
-    public int getTotalPedidos() {return totalPedidos;}
-    public void setTotalPedidos(int totalPedidos) {this.totalPedidos = totalPedidos;}
-    public double getValorArrecadado() {return valorArrecadado;}
+
+    // Getters e Setters
+    public double getFaturamentoMensal() {
+        return faturamentoMensal;
+    }
+
+    public void setFaturamentoMensal(double faturamentoMensal) {
+        this.faturamentoMensal = faturamentoMensal;
+    }
+
+    public int getTotalPedidos() {
+        return totalPedidos;
+    }
+
+    public void setTotalPedidos(int totalPedidos) {
+        this.totalPedidos = totalPedidos;
+    }
+
+    public String getPratoMaisVendido() {
+        return pratoMaisVendido;
+    }
+
+    public void setPratoMaisVendido(String pratoMaisVendido) {
+        this.pratoMaisVendido = pratoMaisVendido;
+    }
 
     @Override
-    public String toString(){
-        return "****** RELATÓRIO MENSAL ********\n" +
-                "TOTAL DE PEDIDOS REALIZADOS: " + totalPedidos + "\n" +
-                "VALOR TOTAL ARRECADADO: R$ " + String.format("%.2f", valorArrecadado) + "\n" +
-                "PRATO MAIS VENDIDO: " + pratoMaisVendido + "\n";
+    public String toString() {
+        return "--------------Relatório Mensal--------------\n" +
+                String.format("Faturamento: R$ %.2f\n", faturamentoMensal) +
+                "Total de Pedidos: " + totalPedidos + "\n" +
+                "Prato mais vendido: " + pratoMaisVendido + "\n" +
+                "---------------------------------------------";
     }
 }

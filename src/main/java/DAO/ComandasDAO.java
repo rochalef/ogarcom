@@ -166,6 +166,7 @@ public class ComandasDAO {
                 comanda.setStatus(rs.getBoolean("ESTADO"));
                 comanda.setDataHoraAbertura(rs.getTimestamp("DATAHORA_ABERTURA").toLocalDateTime());
                 comanda.setPrecoFinal((float) rs.getDouble("VALOR_FINAL"));
+
                 listaFechadas.add(comanda);
             }
         } catch (SQLException ex) {

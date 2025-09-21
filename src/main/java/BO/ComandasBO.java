@@ -18,6 +18,7 @@ public class ComandasBO{
     Comandas comanda = new Comandas();
     List<Comandas> listaComandas = new ArrayList<>();
     List<Comandas> listaAbertas = new ArrayList<>();
+    List<Comandas> listaFechadas = new ArrayList<>();
 
     // Adicionar comanda ao banco de dados
     public void addComanda(Comandas comanda) {
@@ -149,6 +150,7 @@ public class ComandasBO{
         }
     }
 
+
     // ==================== FECHAR COMANDA ====================
     public void fecharComanda(int idComanda) {
         Comandas comanda = buscarComandaPorId(idComanda);
@@ -212,14 +214,17 @@ public class ComandasBO{
     // Buscar comandas fechadas
     public List<Comandas> listarFechadas() {
         ComandasDAO cdao = new ComandasDAO();
-        List<Comandas> todas = cdao.listarTudo();
-        List<Comandas> fechadas = new ArrayList<>();
-        for (Comandas c : todas) {
-            if (!c.getStatus()) { // ESTADO = FALSE
-                fechadas.add(c);
+        listaFechadas = cdao.listarFechadas();
+
+        if (listaFechadas.isEmpty()) {
+            System.out.println("Não há comandas fechadas.");
+            return new ArrayList<>(); // retorna lista vazia em vez de null
+        } else {
+            for (Comandas c : listaFechadas) {
+                System.out.println("ID: " + c.getId() + " | Preço final: R$ " + c.getPrecoFinal());
             }
+            return listaFechadas;
         }
-        return fechadas;
     }
 
 

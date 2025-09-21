@@ -1,4 +1,6 @@
 package BO;
+
+import DAO.ComandasDAO;
 import Model.Relatorio;
 import Model.Comandas;
 import Model.Pedidos;
@@ -10,22 +12,29 @@ import java.util.Map;
 
 public class RelatorioBO {
 
-    private List<Relatorio> listaRelatorios = new ArrayList<>();
+    // Gera relatório mensal a partir das comandas fechadas do banco
+    public List<Relatorio> gerarRelatorioMensal() {
+        List<Comandas> comandasFechadas = new ComandasDAO().listarFechadas(); // Pega todas as comandas fechadas
+        Relatorio relatorio = gerarRelatorio(comandasFechadas); // Reutiliza o método que gera relatório
+        List<Relatorio> listaRelatorios = new ArrayList<>();
+        listaRelatorios.add(relatorio);
+        return listaRelatorios;
+    }
 
-
-    public Relatorio gerarRelatorio(List<Comandas> listaComandas) {
+    // Gera um relatório a partir de qualquer lista de comandas fechadas
+    public Relatorio gerarRelatorio(List<Comandas> comandasFechadas) {
         int totalPedidos = 0;
         double valorArrecadado = 0;
         Map<String, Integer> contagemProdutos = new HashMap<>();
 
-        for (Comandas c : listaComandas) {
-            for (Pedidos p : c.getListaPedidos()) {
-                totalPedidos += p.getQtd();
-                valorArrecadado += p.getPrecoProduto() * p.getQtd();
+        for (Comandas comanda : comandasFechadas) {
+            for (Pedidos pedido : comanda.getListaPedidos()) {
+                totalPedidos += pedido.getQtd();
+                valorArrecadado += pedido.getPrecoProduto() * pedido.getQtd();
 
                 contagemProdutos.put(
-                        p.getNomeProduto(),
-                        contagemProdutos.getOrDefault(p.getNomeProduto(), 0) + p.getQtd()
+                        pedido.getNomeProduto(),
+                        contagemProdutos.getOrDefault(pedido.getNomeProduto(), 0) + pedido.getQtd()
                 );
             }
         }
@@ -39,23 +48,6 @@ public class RelatorioBO {
             }
         }
 
-        Relatorio relatorio = new Relatorio(totalPedidos, valorArrecadado, pratoMaisVendido);
-        listaRelatorios.add(relatorio);
-        return relatorio;
-    }
-
-    public List<Relatorio> listarRelatorios() {
-        if (listaRelatorios.isEmpty()) {
-            System.out.println("Nenhum relatório gerado.");
-            return null;
-        } else {
-            return listaRelatorios;
-        }
-    }
-
-    // Limpa a lista de relatórios
-    public void limparRelatorios() {
-        listaRelatorios.clear();
-        System.out.println("Lista de relatórios limpa!");
+        return new Relatorio(totalPedidos, valorArrecadado, pratoMaisVendido);
     }
 }

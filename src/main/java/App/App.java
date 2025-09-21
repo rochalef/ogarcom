@@ -144,6 +144,7 @@ public class App{
                             default:
                                 break;
                         }
+                        break;
                     }
                 case "b":
                     List<Comandas> todasComandas = cbo.listarTodas();

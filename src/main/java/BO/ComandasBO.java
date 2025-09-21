@@ -47,7 +47,7 @@ public class ComandasBO{
         System.out.println("Pedido adicionado à comanda " + idComanda);
     }
 
-    public void editarPedido(int idComanda, int id, int qtd) {
+    public void editarPedido(int idComanda, int idPedido, int qtd) {
         Comandas comanda = buscarComandaPorId(idComanda);
         PedidosBO pbo = new PedidosBO();
         comanda.setListaPedidos(pbo.listarPedidos(idComanda));
@@ -55,11 +55,11 @@ public class ComandasBO{
             System.out.println("Comanda não encontrada!");
             return;
         }
-        if(qtd >= 0) {
+        if(qtd > 0) {
             for (Pedidos p : comanda.getListaPedidos()) {
-                if (p.getId() == id) {
+                if (p.getId() == idPedido) {
                     p.setQtd(qtd);
-                    pbo.editarPedido(id, qtd);
+                    pbo.editarPedido(idPedido, qtd);
                     System.out.println("Pedido atualizado!");
                     return;
                 }
@@ -67,8 +67,8 @@ public class ComandasBO{
             System.out.println("Pedido não encontrado.");
         }else if (qtd == 0){
             for (Pedidos p : comanda.getListaPedidos()) {
-                if (p.getId() == id) {
-                    pbo.removerPedido(id);
+                if (p.getId() == idPedido) {
+                    pbo.removerPedido(idPedido);
                     comanda.getListaPedidos().remove(p);
                     System.out.println("Pedido excuído!");
                     return;
@@ -80,7 +80,7 @@ public class ComandasBO{
         }
     }
 
-    public void deletarPedido(int idComanda, int idProduto) {
+    public void deletarPedido(int idComanda, int idPedido) {
         Comandas comanda = buscarComandaPorId(idComanda);
         PedidosBO pbo = new PedidosBO();
         comanda.setListaPedidos(pbo.listarPedidos(idComanda));
@@ -90,8 +90,8 @@ public class ComandasBO{
         }
 
         for (Pedidos p : comanda.getListaPedidos()) {
-            if (p.getIdProduto() == idProduto) {
-                pbo.removerPedido(p.getId());
+            if (p.getId() == idPedido) {
+                pbo.removerPedido(idPedido);
                 comanda.getListaPedidos().remove(p);
                 System.out.println("Pedido removido!");
                 return;

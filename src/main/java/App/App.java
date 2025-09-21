@@ -85,16 +85,16 @@ public class App{
                                         cbo.addPedido(idComanda, idProdutoAdd, qtdAdd);
                                         break;
                                     case 2:
-                                        System.out.print("Digite o ID do produto que deseja editar: ");
-                                        int idProdutoEdit = sc.nextInt(); sc.nextLine();
+                                        System.out.print("Digite o ID do pedido que deseja editar: ");
+                                        int idPedidoEdit = sc.nextInt(); sc.nextLine();
                                         System.out.print("Digite a nova quantidade: ");
                                         int qtdEdit = sc.nextInt(); sc.nextLine();
-                                        cbo.editarPedido(idComanda, idProdutoEdit, qtdEdit);
+                                        cbo.editarPedido(idComanda, idPedidoEdit, qtdEdit);
                                         break;
                                     case 3:
-                                        System.out.print("Digite o ID do produto que deseja remover: ");
-                                        int idProdutoDel = sc.nextInt(); sc.nextLine();
-                                        cbo.deletarPedido(idComanda, idProdutoDel);
+                                        System.out.print("Digite o ID do pedido que deseja remover: ");
+                                        int idPedidoDel = sc.nextInt(); sc.nextLine();
+                                        cbo.deletarPedido(idComanda, idPedidoDel);
                                         break;
                                     case 4:
                                         break;

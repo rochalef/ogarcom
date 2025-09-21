@@ -73,7 +73,7 @@ public class App{
                                         "\n1 - Adicionar pedido" +
                                         "\n2 - Editar pedido" +
                                         "\n3 - Remover pedido" +
-                                        "\n4 - Voltar" +
+                                        "\n4 - Voltar para menu inicial" +
                                         "\n\nOpção escolhida: ");
                                 int opcaoPedido = sc.nextInt(); sc.nextLine();
                                 switch(opcaoPedido){
@@ -100,6 +100,7 @@ public class App{
                                         break;
                                     default:
                                         System.out.println("Opção inválida!");
+                                        break;
                                 }
                                 break;
                             case "B":
@@ -148,6 +149,7 @@ public class App{
                     }
                     break;
                 default:
+                    System.out.println("Opção inexistente! Tente novamente.");
                     break;
             }
         }while(!opcaoPrincipal.equals("s"));

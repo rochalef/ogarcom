@@ -12,6 +12,8 @@ import Model.Produto;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Scanner;
+
 public class ComandasBO{
     Comandas comanda = new Comandas();
     List<Comandas> listaComandas = new ArrayList<>();
@@ -155,26 +157,57 @@ public class ComandasBO{
             return;
         }
 
-        // Atualiza a lista de pedidos do banco
         PedidosBO pbo = new PedidosBO();
         comanda.setListaPedidos(pbo.listarPedidos(idComanda));
 
-        // Calcula total
-        float total = 0;
-        for (Pedidos p : comanda.getListaPedidos()) {
-            total += p.getPrecoProduto() * p.getQtd();
-        }
-        comanda.setPrecoFinal(total);
+        System.out.println("---------------------------------------");
+        System.out.println("Pedidos da Comanda " + idComanda + ":");
 
-        // Fecha a comanda no banco
+        float totalPedidos = 0;
+        if (comanda.getListaPedidos().isEmpty()) {
+            System.out.println("Nenhum pedido nessa comanda.");
+        } else {
+            for (Pedidos p : comanda.getListaPedidos()) {
+                System.out.println(" - " + p.getQtd() + "x " + p.getNomeProduto() + " | Preço unitário: R$ " + String.format("%.2f", p.getPrecoProduto()));
+                totalPedidos += p.getPrecoProduto() * p.getQtd();
+            }
+        }
+
+        System.out.println("---------------------------------------");
+        System.out.println("Total dos pedidos: R$ " + String.format("%.2f", totalPedidos));
+
+        // 10% do garçom
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Deseja adicionar os 10% de serviço? (S/N): ");
+        String resposta = scanner.nextLine().trim().toUpperCase();
+
+        float precoFinal;
+        if (resposta.equals("S")) {
+            float taxaGarcom = totalPedidos * 0.10f;
+            precoFinal = totalPedidos + taxaGarcom;
+            System.out.println("Taxa de serviço (10%): R$ " + String.format("%.2f", taxaGarcom));
+            System.out.println("Preço final: R$ " + String.format("%.2f", precoFinal));
+        } else {
+            precoFinal = totalPedidos;
+            System.out.println("Taxa de serviço não adicionada.");
+            System.out.println("Preço final: R$ " + String.format("%.2f", precoFinal));
+        }
+
+        System.out.println("---------------------------------------");
+
+        // Fecha a comanda no banco de dados
+        comanda.setPrecoFinal(precoFinal);
         ComandasDAO cdao = new ComandasDAO();
         cdao.fecharComanda(comanda);
 
         // Remove da lista de abertas
         listaAbertas.remove(comanda);
 
-        System.out.println("Comanda " + comanda.getId() + " fechada com sucesso! Total: R$ " + total);
+        System.out.println("Comanda " + comanda.getId() + " fechada com sucesso!");
+        //scanner.close(); // Fechar o scanner para evitar vazamento de recursos
     }
+
+
 
     // Buscar comandas fechadas
     public List<Comandas> listarFechadas() {

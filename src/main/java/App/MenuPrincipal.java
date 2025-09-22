@@ -14,7 +14,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         comandasMenu = new javax.swing.JMenu();
-        editMenu = new javax.swing.JMenu();
+        relatorioMenu = new javax.swing.JMenu();
         cardapioMenu = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -61,9 +61,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         menuBar.add(comandasMenu);
 
-        editMenu.setMnemonic('e');
-        editMenu.setText("Relatório");
-        menuBar.add(editMenu);
+        relatorioMenu.setMnemonic('e');
+        relatorioMenu.setText("Relatório");
+        relatorioMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                relatorioMenuMouseClicked(evt);
+            }
+        });
+        menuBar.add(relatorioMenu);
 
         cardapioMenu.setMnemonic('h');
         cardapioMenu.setText("Cardápio");
@@ -132,6 +137,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }                   
     }//GEN-LAST:event_cardapioMenuMouseClicked
 
+    private void relatorioMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relatorioMenuMouseClicked
+        boolean aberta = false;
+        for (javax.swing.JInternalFrame frame : desktopPane.getAllFrames()) {
+            if (frame instanceof RelatorioMenu) { 
+                aberta = true;
+                frame.toFront(); 
+                try {
+                    frame.setSelected(true); 
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+        if (!aberta) {
+            RelatorioMenu relatorio = new RelatorioMenu();
+            desktopPane.add(relatorio);
+            relatorio.setVisible(true);
+        }       
+    }//GEN-LAST:event_relatorioMenuMouseClicked
+    
+   
     /**
      * @param args the command line arguments
      */
@@ -172,11 +199,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu cardapioMenu;
     private javax.swing.JMenu comandasMenu;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu relatorioMenu;
     // End of variables declaration//GEN-END:variables
 
 }

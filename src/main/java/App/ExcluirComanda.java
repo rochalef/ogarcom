@@ -42,6 +42,12 @@ public class ExcluirComanda extends javax.swing.JDialog {
 
         jLabel12.setText("ID da Comanda");
 
+        idComanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idComandaActionPerformed(evt);
+            }
+        });
+
         excluirComanda.setText("Excluir");
         excluirComanda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +131,10 @@ public class ExcluirComanda extends javax.swing.JDialog {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void idComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idComandaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idComandaActionPerformed
 
     /**
      * @param args the command line arguments

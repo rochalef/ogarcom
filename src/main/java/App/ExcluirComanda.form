@@ -97,6 +97,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idComanda">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idComandaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="excluirComanda">
           <Properties>

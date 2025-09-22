@@ -3,6 +3,8 @@ package DAO;
 import Model.Comandas;
 import BO.FuncionarioBO;
 import Conexao.Conexao;
+import Model.Pedidos;
+
 import java.time.LocalDateTime;
 import java.sql.Timestamp;
 import java.sql.*;
@@ -127,4 +129,54 @@ public class ComandasDAO {
         }
         return listaAbertas;
     }
+
+    public void fecharComanda(Comandas comanda) {
+        Connection con = Conexao.getConexao();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(
+                    "UPDATE comandas SET ESTADO = FALSE, VALOR_FINAL = ?, DATAHORA_FECHAMENTO = NOW() WHERE ID = ?"
+            );
+            stmt.setDouble(1, comanda.getPrecoFinal());
+            stmt.setInt(2, comanda.getId());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("Erro ao fechar a comanda no banco de dados");
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+
+    public List<Comandas> listarFechadas() {
+        Connection con = Conexao.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs;
+
+        List<Comandas> listaFechadas = new ArrayList<>();
+        try {
+            stmt = con.prepareStatement("SELECT ID, NOME_PESSOA, NOME_GARCOM, MESA, ESTADO, DATAHORA_ABERTURA, VALOR_FINAL FROM comandas WHERE ESTADO = FALSE");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Comandas comanda = new Comandas();
+                comanda.setId(rs.getInt("ID"));
+                comanda.setNomePessoa(rs.getString("NOME_PESSOA"));
+                comanda.setNomeGarcom(rs.getString("NOME_GARCOM"));
+                comanda.setMesa(rs.getInt("MESA"));
+                comanda.setStatus(rs.getBoolean("ESTADO"));
+                comanda.setDataHoraAbertura(rs.getTimestamp("DATAHORA_ABERTURA").toLocalDateTime());
+                comanda.setPrecoFinal((float) rs.getDouble("VALOR_FINAL"));
+
+                listaFechadas.add(comanda);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("Erro ao listar informações no banco de dados");
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+        return listaFechadas;
+    }
+
+
 }

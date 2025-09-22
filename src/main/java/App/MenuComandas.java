@@ -54,7 +54,7 @@ public class MenuComandas extends javax.swing.JInternalFrame {
         listaComandas = new javax.swing.JTable();
         fecharComanda = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
+        numComandaPedidos = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -141,17 +141,17 @@ public class MenuComandas extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(criarComandaButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(fecharComanda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(excluirComanda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(numComandaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pedidos)
-                        .addGap(0, 15, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -166,7 +166,7 @@ public class MenuComandas extends javax.swing.JInternalFrame {
                     .addComponent(excluirComanda)
                     .addComponent(fecharComanda)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numComandaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -189,7 +189,14 @@ public class MenuComandas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_pedidosActionPerformed
 
     private void excluirComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirComandaActionPerformed
-        // TODO add your handling code here:
+        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+        ExcluirComanda dialog = new ExcluirComanda((java.awt.Frame) window, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+        boolean teste = dialog.testarExecucao();
+        if(teste == true){
+            recarregarTabela();
+        }
     }//GEN-LAST:event_excluirComandaActionPerformed
 
     private void fecharComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharComandaActionPerformed
@@ -209,8 +216,8 @@ public class MenuComandas extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable listaComandas;
+    private javax.swing.JTextField numComandaPedidos;
     private javax.swing.JButton pedidos;
     // End of variables declaration//GEN-END:variables
 }

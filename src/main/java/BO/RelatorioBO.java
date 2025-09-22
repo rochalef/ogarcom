@@ -1,9 +1,9 @@
 package BO;
 
 import DAO.ComandasDAO;
-import Model.Relatorio;
 import Model.Comandas;
 import Model.Pedidos;
+import Model.*;
 
 import java.util.*;
 

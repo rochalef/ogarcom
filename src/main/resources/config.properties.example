@@ -1,0 +1,5 @@
+db.url=jdbc:<url>
+db.username=<username>
+db.password=<password>
+
+// troque os <> por seus respectivos e remova o .example

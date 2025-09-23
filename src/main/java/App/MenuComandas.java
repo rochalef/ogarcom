@@ -20,7 +20,7 @@ public class MenuComandas extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) listaComandas.getModel();
         model.setRowCount(0);
         for (Comandas comanda : listaComandasAbertas){
-            Object[] novaLinha = {comanda};
+            Object[] novaLinha = {comanda.getId(), comanda.getNomePessoa(), comanda.getNomeGarcom(), comanda.getStatus(), comanda.getDataHoraAbertura()};
             model.addRow(novaLinha);
         }
     }
@@ -54,7 +54,7 @@ public class MenuComandas extends javax.swing.JInternalFrame {
         listaComandas = new javax.swing.JTable();
         fecharComanda = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
+        numComandaPedidos = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -79,6 +79,7 @@ public class MenuComandas extends javax.swing.JInternalFrame {
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setClosable(true);
+        setTitle("Lista de comandas abertas");
 
         criarComandaButton.setText("Criar nova comanda");
         criarComandaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -103,24 +104,41 @@ public class MenuComandas extends javax.swing.JInternalFrame {
 
         listaComandas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Lista de comandas"
+                "ID", "Nome do cliente", "Nome do garçom", "Status", "Data e hora de abertura"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        listaComandas.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(listaComandas);
+        if (listaComandas.getColumnModel().getColumnCount() > 0) {
+            listaComandas.getColumnModel().getColumn(0).setMinWidth(30);
+            listaComandas.getColumnModel().getColumn(0).setPreferredWidth(30);
+            listaComandas.getColumnModel().getColumn(0).setMaxWidth(30);
+            listaComandas.getColumnModel().getColumn(1).setResizable(false);
+            listaComandas.getColumnModel().getColumn(2).setResizable(false);
+            listaComandas.getColumnModel().getColumn(3).setResizable(false);
+            listaComandas.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         fecharComanda.setText("Fechar comanda existente");
         fecharComanda.addActionListener(new java.awt.event.ActionListener() {
@@ -141,17 +159,17 @@ public class MenuComandas extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(criarComandaButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(fecharComanda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(excluirComanda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(numComandaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pedidos)
-                        .addGap(0, 15, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -166,7 +184,7 @@ public class MenuComandas extends javax.swing.JInternalFrame {
                     .addComponent(excluirComanda)
                     .addComponent(fecharComanda)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numComandaPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -185,15 +203,33 @@ public class MenuComandas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_criarComandaButtonActionPerformed
 
     private void pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosActionPerformed
-        // TODO add your handling code here:
+        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+        int idComandaP = Integer.parseInt(numComandaPedidos.getText());
+        MenuPedidos dialog = new MenuPedidos((java.awt.Frame) window, true, idComandaP);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
     }//GEN-LAST:event_pedidosActionPerformed
 
     private void excluirComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirComandaActionPerformed
-        // TODO add your handling code here:
+        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+        ExcluirComanda dialog = new ExcluirComanda((java.awt.Frame) window, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+        boolean teste = dialog.testarExecucao();
+        if(teste == true){
+            recarregarTabela();
+        }
     }//GEN-LAST:event_excluirComandaActionPerformed
 
     private void fecharComandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharComandaActionPerformed
-        // TODO add your handling code here:
+        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(this);
+        FecharComanda dialog = new FecharComanda((java.awt.Frame) window, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+        boolean teste = dialog.testarExecucao();
+        if(teste == true){
+            recarregarTabela();
+        }
     }//GEN-LAST:event_fecharComandaActionPerformed
 
 
@@ -209,8 +245,8 @@ public class MenuComandas extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable listaComandas;
+    private javax.swing.JTextField numComandaPedidos;
     private javax.swing.JButton pedidos;
     // End of variables declaration//GEN-END:variables
 }

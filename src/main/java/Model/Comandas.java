@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class Comandas {
     private int id, mesa, idGarcom;
     private String nome_pessoa, nome_garcom;
-    private LocalDateTime dataHoraAbertura;
+    private LocalDateTime dataHoraAbertura,dataHoraFechamento;
     private List<Pedidos> listaPedidos = new ArrayList<>();
     private boolean status;
     private float precoFinal;
@@ -31,12 +31,17 @@ public class Comandas {
 
     public float getPrecoFinal() {return precoFinal;}
     public void setPrecoFinal(float precoFinal) {this.precoFinal = precoFinal;}
+    
+    public String getStatus() {return (status ? "Aberta" : "Fechada");}
 
     public String getNomeGarcom() {return nome_garcom;}
     public void setNomeGarcom(String nome_garcom) {this.nome_garcom = nome_garcom;}
 
     public LocalDateTime getDataHoraAbertura() {return dataHoraAbertura;}
     public void setDataHoraAbertura(LocalDateTime dataHoraAbertura) {this.dataHoraAbertura = dataHoraAbertura;}
+    
+    public LocalDateTime getDataHoraFechamento() {return dataHoraFechamento;}
+    public void setDataHoraFechamento(LocalDateTime dataHoraFechamento) {this.dataHoraFechamento = dataHoraFechamento;}
 
     public List<Pedidos> getListaPedidos() {return listaPedidos;}
     public void setListaPedidos(List<Pedidos> listaPedidos) {this.listaPedidos = listaPedidos;}

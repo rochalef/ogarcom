@@ -8,12 +8,12 @@ import BO.CardapioBO;
 
 import java.util.*;
 
-public class App{
+public class AppTerminal {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         ComandasBO cbo = new ComandasBO();
         FuncionarioBO fbo = new FuncionarioBO();
-        List<Comandas> listaComandasAbertas = new ArrayList<>();
+        List<Comandas> listaComandasAbertas;
         listaComandasAbertas = cbo.listarAbertas();
 
         int idComanda;
@@ -129,10 +129,8 @@ public class App{
                                 System.out.println("\n-------------------- PEDIDOS DA COMANDA --------------------\n");
                                 cbo.listarPedidos(idComanda);
                                 break;
-                            case "E":
-
-                                break;
-                            case "F":
+                            case "E", "F":
+                                System.out.println("nao implementado no terminal");
                                 break;
                             default:
                                 break;
